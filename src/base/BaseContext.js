@@ -9,7 +9,7 @@ const BaseContextProvider = ({children}) => {
 
   const [state, dispatch] = useReducer(baseReducer, initialState);
 
-  const getList = async (table: string) => {
+  const getList = async (table) => {
     try {
       const json = await doRequest(`${config.api.url}${table}`, 'get', null);
       dispatch({
@@ -136,6 +136,10 @@ const BaseContextProvider = ({children}) => {
     })
   };
 
+  const sessionGetValue = (key) => {
+    return state.session[key] || ''
+  }
+
   // validate
 
   const itemValidate = () => {
@@ -186,6 +190,7 @@ const BaseContextProvider = ({children}) => {
     item: state.item,
     list: state.list,
     session: state.session,
+    sessionGetValue,
     itemValidate,
     getItem,
     fetchItem,

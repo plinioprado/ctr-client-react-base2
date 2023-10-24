@@ -17,7 +17,12 @@ export const initialState = {
   }
 };
 
-const baseReducer = (state, action) => {
+interface Action {
+  type: string,
+  payload: any
+}
+
+const baseReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case 'LIST_GET':
       return {
@@ -46,11 +51,14 @@ const baseReducer = (state, action) => {
         }
       };
     case 'ITEM_DELETE':
-      const keyName = Object.keys(action.payload)[0]
-      const keyValue = action.payload[keyName]
+      const keyName : string = Object.keys(action.payload)[0]
+      const keyValue : string = action.payload[keyName];
+      const list : object[] = state.list.filter(it => {
+        const val : string = it[keyName] || '';
+        return val.toString() !== keyValue})
       return {
         ...state,
-        list: state.list.filter(it => it[keyName].toString() !== keyValue.toString()),
+        list: list,
         item: {}
       };
     case 'ITEM_CLOSE':
