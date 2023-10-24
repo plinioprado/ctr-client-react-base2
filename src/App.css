@@ -1,38 +1,177 @@
+a:link {
+  color: #000;
+}
+
+a:visited {
+  color: #000;
+}
+
+a:hover {
+  color: #777;
+}
+
+body {
+  height: 100vh;
+  font-size: 14px;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+#root {
+  height: 100vh;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #fff !important;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.navbar-light {
+  background-color: #fff !important;
+}
+
+.container {
+  max-width: 100%;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.text-error {
+  color: red;
+  width: 100%;
+  height: 1em;
+}
+
+/* Header */
+
+header a {
+  text-decoration: none;
+}
+
+header .navbar-nav {
+  width: 100%;
+}
+
+header .loginOption {
+  margin-left: auto;
+}
+
+header .navbar-light {
+  border-bottom-style: solid !important;
+  border-bottom-color: #000;
+  border-bottom: 1px;
+}
+
+/* Footer */
+
+footer {
+  width: 100%;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  height: 2.5rem;
+  border-top-style: solid !important;
+  border-top-color: #000;
+  border-top: 1px;
+  align-self: flex-end;
+}
+
+footer .container {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Content */
+
+main .container {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.modal-dialog {
+  width: 80% !important;
+  max-width: 80% !important;
+}
+
+.dataList .modal {
+  position: absolute !important;
+  top: 3em !important;
+  width: 100%;
+}
+
+main.login .container form {
+  margin-left: 35%;
+  margin-right: 35%;
+  margin-top: 10vh;
+}
+
+/* Login */
+
+.login {
+  display: flex;
+}
+
+.login.container {
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 120rem;
 }
 
-.App-link {
-  color: #61dafb;
+.form-control .invalid {
+  border-color: red;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login button {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.thin-line {
+  font-size: 0.5em;
+}
+
+/* table */
+
+.table-filter {
+  display: flex;
+  flex-direction: row;
+}
+
+.table-filter div {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.table-filter div span {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+td.number {
+  text-align: right;
+}
+
+input.fieldnumber {
+  text-align: right;
+}
+
+.text-error {
+  color: red;
+}
+
+.header.row div {
+  font-weight: bold;
 }

@@ -1,0 +1,9 @@
+{
+  "api": {
+    "url": "http://localhost:4000/api/"
+  },
+  "tenants": [
+    { "value": "default", "text": "Example Ltd." },
+    { "value": "demo", "text": "Demo Ltd." }
+  ]
+}
