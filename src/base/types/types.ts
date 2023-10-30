@@ -1,10 +1,15 @@
 
-export type StateSessionAlert = {
+export type Alert = {
   variant?: string,
   message?: string
 }
 
-export type StateSession = {
+export type SelectOption = {
+  value: string,
+  text: string
+}
+
+export type Session = {
   user_id?: number,
   user_name?: string,
   user_role?: string,
@@ -13,5 +18,5 @@ export type StateSession = {
   tenant_cod?: string,
   tenant_name?: string,
   selectOptions?: string,
-  alert?: StateSessionAlert
+  alert?: Alert
 }
