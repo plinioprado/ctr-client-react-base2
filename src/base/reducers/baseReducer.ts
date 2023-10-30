@@ -17,12 +17,16 @@ export const initialState = {
   }
 };
 
-interface Action {
-  type: string,
-  payload: any
-}
 
-const baseReducer = (state = initialState, action: Action) => {
+export type StateAction =
+  | { type: 'LIST_GET', payload: any}
+  | { type: 'LIST_CLEAR'}
+  | { type: 'ITEM_GET', payload: any }
+  | { type: 'FIELD_UPDATE', payload: any }
+  | { type: 'ITEM_DELETE', payload: any }
+  | { type: 'ITEM_CLOSE'}
+
+export const baseReducer = (state = initialState, action: StateAction) => {
   switch (action.type) {
     case 'LIST_GET':
       return {
@@ -66,35 +70,7 @@ const baseReducer = (state = initialState, action: Action) => {
         ...state,
         item: {}
       };
-    case 'LOGIN':
-      return {
-        ...state,
-        session: action.payload.session
-      };
-    case 'LOGOUT':
-      return initialState;
-    case 'ALERT_SHOW':
-      return {
-        ...state,
-        session: {
-          ...state.session,
-          alert: {
-            variant: action.payload.session.alert.type || 'error',
-            message: action.payload.session.alert.message || 'Error',
-          }
-        }
-      };
-    case 'ALERT_HIDE':
-      return {
-        ...state,
-        session: {
-          ...state.session,
-          alert: null
-        }
-      };
     default:
       return state;
   }
 }
-
-export default baseReducer;

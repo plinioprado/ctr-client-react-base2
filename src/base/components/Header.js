@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
+import {ReactComponent as Logo} from '../../ctr_logo.svg';
 
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -33,7 +34,7 @@ function Header() {
       <Navbar expand="md" className="bg-body-tertiary">
         <Container>
           <Navbar.Brand href="#" to="/" onClick={handleMenu}>
-            CTR App
+            <Logo style={{height: '1.5em'}} to="/" onClick={handleMenu} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
