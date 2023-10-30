@@ -1,11 +1,15 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useContext } from 'react';
 
-import baseReducer, { initialState } from './baseReducer'
-import config from "./config.json";
+import baseReducer, { initialState } from '../reducers/baseReducer'
+import config from "../config.json";
+
+import { SessionContext } from '../contexts/SessionContext';
 
 const BaseContext = createContext();
 
 const BaseContextProvider = ({children}) => {
+
+  const { alertShow, doRequest } = useContext(SessionContext);
 
   const [state, dispatch] = useReducer(baseReducer, initialState);
 
@@ -102,43 +106,7 @@ const BaseContextProvider = ({children}) => {
 
   const submitItem = () => dispatch({ type: 'ITEM_SUBMIT' });
 
-  const login = async (email, pass, tenant) => {
-    try {
-      const json = await doRequest(`${config.api.url}login`, 'post', { email, pass, tenant });
-      dispatch({ type: 'LOGIN', payload: { session: json.data }});
-      return true;
-    } catch (err) {
-      alertShow('error', err.message);
-      return false;
-    }
-  };
-
   const clearItem = () => dispatch({ type: 'ITEM_CLOSE' });
-
-  const logout = () => dispatch({ type: 'LOGOUT'});
-
-  const isLogged = () => state.session && state.session.user_name;
-
-  const alertHide = () => dispatch({ type: 'ALERT_HIDE' })
-
-  const alertShow = (type, message) => {
-    const variant = { error: 'danger', success: 'success', alert: 'primary'}
-    dispatch({
-      type: 'ALERT_SHOW',
-      payload: {
-        session: {
-          alert: {
-            type: variant[type],
-            message: `${type}: ${message}`
-          }
-        }
-      }
-    })
-  };
-
-  const sessionGetValue = (key) => {
-    return state.session[key] || ''
-  }
 
   // validate
 
@@ -162,35 +130,10 @@ const BaseContextProvider = ({children}) => {
 
   // helpers
 
-  const doRequest = async (url, method, body) => {
-    try {
-      let options = {
-        method: method,
-        headers: {
-          'Authorization': `${state.session.user_id}:${state.session.auth_token}`,
-          'Content-Type': 'application/json'
-        }
-      };
-      if (body !== null) options.body = JSON.stringify(body);
-      const res = await fetch(url, options);
-      const response = await res.json();
-      if (res.status !== 200) throw response;
-
-      return response;
-    } catch (err) {
-      throw err;
-    }
-  }
-
   const shop = {
-    access: state.session.auth_access ? JSON.parse(state.session.auth_access) : {},
-    accessJSON: state.session.auth_access,
-    alertHide,
     format: state.format,
     item: state.item,
     list: state.list,
-    session: state.session,
-    sessionGetValue,
     itemValidate,
     getItem,
     fetchItem,
@@ -203,9 +146,6 @@ const BaseContextProvider = ({children}) => {
     deleteItem,
     submitItem,
     clearItem,
-    login,
-    logout,
-    isLogged
   }
 
   return <BaseContext.Provider value={shop}>{children}</BaseContext.Provider>;

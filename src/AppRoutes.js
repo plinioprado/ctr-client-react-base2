@@ -1,15 +1,15 @@
+import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import AuxList from "./base/components/aux/AuxList";
 import Home from "./base/components/Home";
 import Login from "./base/components/Login";
-import { useContext } from "react";
 
-import { BaseContext } from "./base/BaseContext";
+import { SessionContext } from "./base/contexts/SessionContext";
 import Session from "./base/components/Session";
 
 function AppRoutes() {
-  const { isLogged } = useContext(BaseContext);
+  const { isLogged } = useContext(SessionContext);
 
   return isLogged() ? (
     <Routes>

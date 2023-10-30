@@ -1,5 +1,4 @@
-import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container } from "react-bootstrap";
 
 function Home() {
   return (
@@ -8,7 +7,7 @@ function Home() {
         <h2>Home</h2>
       </Container>
     </main>
-  )
+  );
 }
 
 export default Home;

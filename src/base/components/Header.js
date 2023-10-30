@@ -7,14 +7,15 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Alert from "react-bootstrap/Alert";
 
-import { BaseContext } from "../BaseContext";
+import { SessionContext } from "../contexts/SessionContext";
 
 function Header() {
-  const { session, logout, alertHide } = useContext(BaseContext);
+  const { session, logout, alertHide } = useContext(SessionContext);
 
   const navigate = useNavigate();
 
   const handleMenu = (e) => {
+    e.preventDefault();
     navigate(e.target.getAttribute("to"));
   };
 

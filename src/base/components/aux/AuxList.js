@@ -3,7 +3,8 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import { Button } from 'react-bootstrap';
 
-import { BaseContext } from '../../BaseContext';
+import { SessionContext } from '../../contexts/SessionContext';
+import { BaseContext } from '../../contexts/BaseContext';
 import FieldFilter from '../filter/FieldFilter';
 import FieldFilterValue from '../filter/FieldFilterValue';
 
@@ -11,7 +12,8 @@ import AuxItem from './AuxItem';
 
 function AuxList({ table }) {
 
-  const {accessJSON, list, item, format, getList, getItem, updateField, clearItem, createItem, updateItem, deleteItem, itemValidate} = useContext(BaseContext);
+  const { session } = useContext(SessionContext)
+  const {list, item, format, getList, getItem, updateField, clearItem, createItem, updateItem, deleteItem, itemValidate} = useContext(BaseContext);
 
   useEffect(
     () => {
@@ -24,7 +26,7 @@ function AuxList({ table }) {
 
   // access
 
-  const access = JSON.parse(accessJSON)[table];
+  const access = JSON.parse(session.auth_access)[table];
   const accessDelete = item && !item.opNew && /d/.test(access);
   const accessSubmit = item && ((item.opNew && /c/.test(access)) || (!item.opNew && /u/.test(access)));
   const showNew = /c/.test(access);
