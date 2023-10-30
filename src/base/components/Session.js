@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import Table from 'react-bootstrap/Table';
 
-import { BaseContext } from "../BaseContext";
+import { SessionContext } from "../contexts/SessionContext";
 import { Container } from "react-bootstrap";
 
 function Session() {
 
-  const { session } = useContext(BaseContext);
+  const { session } = useContext(SessionContext);
 
   return (
     <main>

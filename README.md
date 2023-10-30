@@ -1,46 +1,92 @@
-# Getting Started with Create React App
+# ctr-client-react-base
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Front-end application in React that provides a base for Business and Finance Applications. Coded from zero based on the features of ctr-client-react and focus on:
 
-## Available Scripts
+* The latest technologies and approaches.
+* A pair of components AuxList and AuxItem able to handle multiple auxiliary tables using data+format responses.
 
-In the project directory, you can run:
+Scope:
 
-### `npm start`
+* Login: The simplest that allows access per features according to entitlements per role
+* Settings
+* Users
+* Roles
+* Tenants
+* Countries: Base ISO 3166
+* Currencies: Base ISO 4217
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Connects to the server ctr-server-node-base to provide the data+format responses based in Node and PostgreSQL for faster development, but its MVC model was designed to be applied to any Language and database.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## The data+format approach
 
-### `npm test`
+The pair of reusable React components AuxList and AuxItem will handle a given Table using responses containing:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* data is either:
 
-### `npm run build`
+  * A List array, containing objects with the cells to be displayed in a html table. Plus a Create button and Update links in the 1st column of each row.
+  * An Item object, containing the fields to be displayed in an html form with options to Return, Delete, or Submit (for creation or update).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* format is an object, containing:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  * Some properties to display on the page, like List Header, Item header...
+  * An array of fields containing properties defining the data display and business rules, like the following example:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ``` js
+    {
+      name: 'tenant_cod',
+      listPosition: 0,
+      formPosition: 7,
+      type: 'select',
+      default: 'default',
+      readonly: true,
+      required: true,
+      label: 'Tenant',
+      width: 6,
+      options: [
+        {
+          value: 'default',
+          text: 'default'
+        }
+    }
+    ```
 
-### `npm run eject`
+The 'type', in this context, will direct to a specific type of Html Field among:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* boolean (select between true and false)
+* password
+* select (the only that will use 'options')
+* serial (numeric serial)
+* text (the default)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+A successful Login request will return a Session object containing, among other info, an Access object where the key is each Table name and its value the rights for Create/Read/Update/Delete.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Stack
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* react
+* react-bootstrap
+* react-router-dom
 
-## Learn More
+## Endpoints
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Related to the tables role, setting, tenant, and user (require authentication)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Show a list: GET /api/:table
+* Show a record by cod: GET /api/:table/:cod
+* Create a record: POST /api/:table
+* Update a record: PUT /api/:table
+* Delete a record: DELETE /api/:table/:cod
+
+Others
+
+* Login and get session if successful: POST /api/login
+* Reset database: GET /api/install/resetdb (require authentication)
+
+## Notes
+
+Not running StrictMode to avoid double calling to server
+
+Npm install is showing a few vulnerabilities but they are in the react-scripts that is a devDependency. Running npm audit --production shows no vulnerbility.
+
+## Contribution
+
+* Any suggestion or info request, make contact through www.linkedin.com/in/plinioprado.

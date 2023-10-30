@@ -2,7 +2,8 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
 
-import { BaseContext } from "../BaseContext";
+import { SessionContext } from '../contexts/SessionContext';
+
 import FieldEmail from "./field/FieldEmail";
 import FieldPassword from './field/FieldPassword';
 import FieldSelect from "./field/FieldSelect";
@@ -46,7 +47,7 @@ function Login() {
 
   const hasError = Object.keys(errorMessages).reduce((acc, val) => (acc || errorMessages[val] !== '') ? true : false, false);
 
-  const { login } = useContext(BaseContext);
+  const { login } = useContext(SessionContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
