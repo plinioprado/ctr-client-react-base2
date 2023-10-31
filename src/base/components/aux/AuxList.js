@@ -90,8 +90,8 @@ function AuxList({ table }) {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
   };
 
-  const handleDelete = (cod) => {
-    deleteItem(table, cod)
+  const handleDelete = () => {
+    deleteItem(table, item[primaryFieldName])
     handleCloseModal();
   };
 
