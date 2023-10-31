@@ -90,20 +90,6 @@ function AuxList({ table }) {
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
   };
 
-  const handleFieldChange = e => {
-    const name = e.target.id;
-    const value = e.target.value.trim();
-
-    handleField(name, value);
-  };
-
-  const handleFieldChangeBoolean = e => {
-    const name = e.target.id;
-    const value = e.target.value === 'true';
-
-    handleField(name, value);
-  };
-
   const handleDelete = (cod) => {
     deleteItem(table, cod)
     handleCloseModal();
@@ -204,18 +190,15 @@ function AuxList({ table }) {
           <AuxItem
             accessDelete={accessDelete}
             accessSubmit={accessSubmit}
-            item={item}
-            itemValidate={itemValidate}
-            header={format.itemHeader}
             fields={format.columns}
-            primaryFieldName={primaryFieldName}
             handleField={handleField}
-            handleFieldChange={handleFieldChange}
-            handleFieldChangeBoolean={handleFieldChangeBoolean}
             handleClose={handleCloseModal}
             handleSubmit={handleSubmit}
             handleDelete={handleDelete}
-            className="itemModal"
+            header={format.itemHeader}
+            item={item}
+            itemValidate={itemValidate}
+            primaryFieldName={primaryFieldName}
           />
         }
 

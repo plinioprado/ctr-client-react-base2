@@ -1,14 +1,15 @@
 import React, { createContext, useReducer } from "react";
-import {
-  sessionReducer,
-  initialStateSession,
-} from "../reducers/sessionReducer";
+import { sessionReducer, initialSession } from "../reducers/sessionReducer";
 import config from "../config.json";
 
 const SessionContext = createContext<any>(null);
 
-const SessionProvider = ({ children }: { children: React.ReactNode }) => {
-  const [state, dispatch] = useReducer(sessionReducer, initialStateSession);
+type SessionContextProviderProps = {
+  children: React.ReactNode;
+};
+
+const SessionContextProvider = ({ children }: SessionContextProviderProps) => {
+  const [state, dispatch] = useReducer(sessionReducer, initialSession);
 
   const alertHide = () => dispatch({ type: "ALERT_HIDE" });
 
@@ -116,4 +117,4 @@ const SessionProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export { SessionContext, SessionProvider };
+export { SessionContext, SessionContextProvider };

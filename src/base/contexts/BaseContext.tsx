@@ -1,5 +1,7 @@
 import React, { createContext, useReducer, useContext } from "react";
 
+import { AuxFormatColumn, AuxFormat } from "../types/types";
+
 import { baseReducer, initialState } from "../reducers/baseReducer";
 import config from "../config.json";
 
@@ -156,8 +158,10 @@ const BaseContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   // helpers
 
+  const format: any = state.format;
+
   const shop = {
-    format: state.format,
+    format: format,
     item: state.item,
     list: state.list,
     itemValidate,

@@ -13,17 +13,15 @@ import FieldText from '../field/FieldText';
 function AuxItemModal({
     accessDelete,
     accessSubmit,
-    item,
-    header,
     fields,
-    itemValidate,
-    primaryFieldName,
     handleField,
-    handleFieldChange,
-    handleFieldChangeBoolean,
     handleClose,
     handleSubmit,
-    handleDelete
+    handleDelete,
+    header,
+    item,
+    itemValidate,
+    primaryFieldName
   }) {
 
 
@@ -52,21 +50,25 @@ function AuxItemModal({
                     el.type === 'boolean' ?
                     <FieldBoolean
                       fieldChangeValue={handleField}
+                      fieldDisabled={false}
                       fieldError={errorMessages[el.name]}
                       fieldLabel={el.label}
                       fieldMd={el.fieldMd}
                       fieldName={el.name}
-                      fieldRequired={el.required}
                       fieldValue={item[el.name]}
                     />
                     : el.type === 'integer' ?
                     <FieldInteger
+                      fieldAutoComplete=""
                       fieldChangeValue={handleField}
+                      fieldDisabled={false}
                       fieldError={errorMessages[el.name]}
                       fieldLabel={el.label}
+                      fieldMaxLength={el.maxLength || 30}
                       fieldMd={el.fieldMd}
                       fieldName={el.name}
                       fieldRequired={el.required}
+                      fieldPlaceHolder=""
                       fieldValue={item[el.name]}
                     />
                     :
@@ -94,7 +96,6 @@ function AuxItemModal({
                     />
                     : el.type === 'serial' ?
                     <FieldSerial
-                      fieldError={errorMessages[el.name]}
                       fieldLabel={el.label}
                       fieldMd={el.fieldMd}
                       fieldName={el.name}
@@ -102,12 +103,15 @@ function AuxItemModal({
                     />
                     :
                     <FieldText
+                      fieldAutoComplete=""
                       fieldChangeValue={handleField}
+                      fieldDisabled={false}
                       fieldError={errorMessages[el.name]}
                       fieldLabel={el.label}
+                      fieldMaxLength={el.maxLength || 30}
                       fieldMd={el.fieldMd}
                       fieldName={el.name}
-                      fieldRequired={el.required}
+                      fieldPlaceHolder=""
                       fieldValue={item[el.name]}
                     />
                 )

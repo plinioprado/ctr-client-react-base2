@@ -1,6 +1,6 @@
-import { StateSession, StateSessionAlert } from '../types/types'
+import { Session, Alert } from '../types/types'
 
-export const initialStateSession: StateSession = {
+export const initialSession: Session = {
   user_id: 0,
   user_name: '',
   user_role: '',
@@ -17,11 +17,11 @@ export const initialStateSession: StateSession = {
 
 export type StateAction =
   | { type: 'ALERT_HIDE'}
-  | { type: 'ALERT_SHOW', payload: StateSessionAlert}
-  | { type: 'LOGIN', payload: StateSession }
+  | { type: 'ALERT_SHOW', payload: Alert}
+  | { type: 'LOGIN', payload: Session }
   | { type: 'LOGOUT' }
 
-export const sessionReducer = (state: StateSession, action: StateAction) : any => {
+export const sessionReducer = (state: Session, action: StateAction) : any => {
   switch (action.type) {
     case 'ALERT_SHOW':
       return {
@@ -42,7 +42,7 @@ export const sessionReducer = (state: StateSession, action: StateAction) : any =
         ...action.payload
       }
     case 'LOGOUT':
-      return initialStateSession;
+      return initialSession;
     default:
       return state;
   }

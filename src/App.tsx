@@ -2,7 +2,7 @@ import "./App.css";
 
 import AppRoutes from "./AppRoutes";
 
-import { SessionProvider } from "./base/contexts/SessionContext";
+import { SessionContextProvider } from "./base/contexts/SessionContext";
 
 import { BaseContextProvider } from "./base/contexts/BaseContext";
 import { BrowserRouter } from "react-router-dom";
@@ -12,7 +12,7 @@ import Footer from "./base/components/Footer";
 function App() {
   return (
     <BrowserRouter>
-      <SessionProvider>
+      <SessionContextProvider>
         <BaseContextProvider>
           <div className="App">
             <Header />
@@ -20,7 +20,7 @@ function App() {
             <Footer />
           </div>
         </BaseContextProvider>
-      </SessionProvider>
+      </SessionContextProvider>
     </BrowserRouter>
   );
 }
