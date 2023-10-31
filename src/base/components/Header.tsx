@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import {ReactComponent as Logo} from '../../ctr_logo.svg';
+import { ReactComponent as Logo } from "../../ctr_logo.svg";
 
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -15,26 +15,27 @@ function Header() {
 
   const navigate = useNavigate();
 
-  const handleMenu = (e) => {
+  const handleMenu = (e: any) => {
     e.preventDefault();
-    navigate(e.target.getAttribute("to"));
+    navigate(e.target.getAttribute("href").replace("#", ""));
   };
 
-  const handleLogout = (e) => {
+  const handleLogout = (e: any) => {
     e.preventDefault();
     logout();
     navigate("/");
   };
 
   const access = session.auth_access && JSON.parse(session.auth_access);
-  const showOp = (table) => session.user_role === "super" || access[table];
+  const showOp = (table: string) =>
+    session.user_role === "super" || access[table];
 
   return (
     <header>
       <Navbar expand="md" className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand href="#" to="/" onClick={handleMenu}>
-            <Logo style={{height: '1.5em'}} to="/" onClick={handleMenu} />
+          <Navbar.Brand href="#/" onClick={handleMenu}>
+            <Logo style={{ height: "1.5em" }} to="/" onClick={handleMenu} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -43,69 +44,41 @@ function Header() {
                 <>
                   <NavDropdown title="Admin" id="basic-nav-dropdown">
                     {showOp("role") && (
-                      <NavDropdown.Item
-                        href="#"
-                        to="/role"
-                        onClick={handleMenu}
-                      >
+                      <NavDropdown.Item href="#/role" onClick={handleMenu}>
                         Role
                       </NavDropdown.Item>
                     )}
                     {showOp("tenant") && (
-                      <NavDropdown.Item
-                        href="#"
-                        to="/tenant"
-                        onClick={handleMenu}
-                      >
+                      <NavDropdown.Item href="#/tenant" onClick={handleMenu}>
                         Tenant
                       </NavDropdown.Item>
                     )}
                     {showOp("setting") && (
-                      <NavDropdown.Item
-                        href="#"
-                        to="/setting"
-                        onClick={handleMenu}
-                      >
+                      <NavDropdown.Item href="#/setting" onClick={handleMenu}>
                         Setting
                       </NavDropdown.Item>
                     )}
                     {showOp("user") && (
-                      <NavDropdown.Item
-                        href="#"
-                        to="/user"
-                        onClick={handleMenu}
-                      >
+                      <NavDropdown.Item href="#/user" onClick={handleMenu}>
                         User
                       </NavDropdown.Item>
                     )}
                     {showOp("country") && (
-                      <NavDropdown.Item
-                        href="#"
-                        to="/country"
-                        onClick={handleMenu}
-                      >
+                      <NavDropdown.Item href="#/country" onClick={handleMenu}>
                         Country
                       </NavDropdown.Item>
                     )}
                     {showOp("currency") && (
-                      <NavDropdown.Item
-                        href="#"
-                        to="/currency"
-                        onClick={handleMenu}
-                      >
+                      <NavDropdown.Item href="#/currency" onClick={handleMenu}>
                         Currency
                       </NavDropdown.Item>
                     )}
-                    <NavDropdown.Item
-                      href="#"
-                      to="/session"
-                      onClick={handleMenu}
-                    >
+                    <NavDropdown.Item href="#/session" onClick={handleMenu}>
                       Session
                     </NavDropdown.Item>
                   </NavDropdown>
                   <Nav.Link
-                    href="#"
+                    href="#/"
                     className="loginOption"
                     onClick={handleLogout}
                   >

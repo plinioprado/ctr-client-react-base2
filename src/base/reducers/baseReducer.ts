@@ -17,7 +17,6 @@ export const initialState = {
   }
 };
 
-
 export type StateAction =
   | { type: 'LIST_GET', payload: any}
   | { type: 'LIST_CLEAR'}

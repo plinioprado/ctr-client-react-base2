@@ -13,17 +13,15 @@ import FieldText from '../field/FieldText';
 function AuxItemModal({
     accessDelete,
     accessSubmit,
-    item,
-    header,
     fields,
-    itemValidate,
-    primaryFieldName,
     handleField,
-    handleFieldChange,
-    handleFieldChangeBoolean,
     handleClose,
     handleSubmit,
-    handleDelete
+    handleDelete,
+    header,
+    item,
+    itemValidate,
+    primaryFieldName
   }) {
 
 
