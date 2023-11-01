@@ -1,6 +1,8 @@
-# ctr-client-react-base
+# ctr-client-react-base2
 
-Front-end application in React that provides a base for Business and Finance Applications. Coded from zero based on the features of ctr-client-react and focus on:
+ctr-client-react-base2 is version 2 (TypeScript) of a front-end application in React that provides a base for Business and Finance Applications.
+
+Coded from zero based on the features of ctr-client-react, it focuses on:
 
 * The latest technologies and approaches.
 * A pair of components AuxList and AuxItem able to handle multiple auxiliary tables using data+format responses.

@@ -5,7 +5,7 @@ type Filter = { field: string; value: string };
 
 type FieldFilterProps = {
   filter: Filter;
-  filterHandleField: (field: string) => null;
+  filterHandleField: (field: string) => void;
   filterList: Filter[];
 };
 

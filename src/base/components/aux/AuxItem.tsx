@@ -14,14 +14,13 @@ type AuxItemModalProps = {
   accessDelete: boolean;
   accessSubmit: boolean;
   fields: any;
-  handleField: (name: string, value: string | number | boolean) => void;
+  handleField: (name: string, value: any) => void;
   handleClose: () => void;
   handleDelete: () => void;
   handleSubmit: (item: any) => void;
-  itemDelete: (cod: string | number) => void;
   header: string;
   item: any;
-  itemValidate: any;
+  itemValidate: () => { [key: string]: string };
 };
 
 function AuxItemModal({
@@ -57,52 +56,56 @@ function AuxItemModal({
                   formatFields
                     .filter((it: any) => it.formPosition > 0)
                     .sort((a: any, b: any) => a.formPosition - b.formPosition)
-                    .map((el: any) =>
+                    .map((el: any, ndx: number) =>
                       el.type === "boolean" ? (
                         <FieldBoolean
                           fieldChangeValue={handleField}
                           fieldDisabled={false}
-                          fieldError={errorMessages[el.name]}
+                          fieldError={(errorMessages as any)[el.name]}
                           fieldLabel={el.label}
                           fieldMd={el.fieldMd}
                           fieldName={el.name}
                           fieldValue={item[el.name]}
+                          key={ndx}
                         />
                       ) : el.type === "integer" ? (
                         <FieldInteger
                           fieldAutoComplete=""
                           fieldChangeValue={handleField}
                           fieldDisabled={false}
-                          fieldError={errorMessages[el.name]}
+                          fieldError={(errorMessages as any)[el.name]}
                           fieldLabel={el.label}
                           fieldMaxLength={el.maxLength || 30}
                           fieldMd={el.fieldMd}
                           fieldName={el.name}
                           fieldPlaceHolder=""
                           fieldValue={item[el.name]}
+                          key={ndx}
                         />
                       ) : el.type === "password" ? (
                         <FieldPassword
                           fieldChangeValue={handleField}
                           fieldDisabled={false}
-                          fieldError={errorMessages[el.name]}
+                          fieldError={(errorMessages as any)[el.name]}
                           fieldLabel={el.label}
                           fieldMaxLength={30}
                           fieldMd={el.fieldMd}
                           fieldName={el.name}
                           fieldPlaceHolder=""
                           fieldValue={item[el.name]}
+                          key={ndx}
                         />
                       ) : el.type === "select" ? (
                         <FieldSelect
                           fieldChangeValue={handleField}
                           fieldDisabled={false}
-                          fieldError={errorMessages[el.name]}
+                          fieldError={(errorMessages as any)[el.name]}
                           fieldLabel={el.label}
                           fieldMd={el.fieldMd}
                           fieldName={el.name}
                           fieldOptions={el.options}
                           fieldValue={item[el.name]}
+                          key={ndx}
                         />
                       ) : el.type === "serial" ? (
                         <FieldSerial
@@ -110,19 +113,21 @@ function AuxItemModal({
                           fieldMd={el.fieldMd}
                           fieldName={el.name}
                           fieldValue={item[el.name]}
+                          key={ndx}
                         />
                       ) : (
                         <FieldText
                           fieldAutoComplete=""
                           fieldChangeValue={handleField}
                           fieldDisabled={false}
-                          fieldError={errorMessages[el.name]}
+                          fieldError={(errorMessages as any)[el.name]}
                           fieldLabel={el.label}
                           fieldMaxLength={el.maxLength || 30}
                           fieldMd={el.fieldMd}
                           fieldName={el.name}
                           fieldPlaceHolder=""
                           fieldValue={item[el.name]}
+                          key={ndx}
                         />
                       ),
                     )}
