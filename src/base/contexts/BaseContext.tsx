@@ -1,7 +1,5 @@
 import React, { createContext, useReducer, useContext } from "react";
 
-import { AuxFormatColumn, AuxFormat } from "../types/types";
-
 import { baseReducer, initialState } from "../reducers/baseReducer";
 import config from "../config.json";
 
@@ -80,13 +78,11 @@ const BaseContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const updateField = ({
-    name,
-    value,
-  }: {
-    name: string;
-    value: string | number;
-  }) => dispatch({ type: "FIELD_UPDATE", payload: { name, value } });
+  const updateField = (name: string, value: any) =>
+    dispatch({
+      type: "FIELD_UPDATE",
+      payload: { field: { name: name, value: value } },
+    });
 
   const createItem = async (table: string, item: any) => {
     try {
@@ -135,7 +131,7 @@ const BaseContextProvider = ({ children }: { children: React.ReactNode }) => {
   // validate
 
   const itemValidate = () => {
-    let errors: any = {};
+    let errors: { [key: string]: string } = {};
     state.format.columns.forEach((it: any) => {
       const value = state.item[it.name];
       if (it.type === "boolean") {

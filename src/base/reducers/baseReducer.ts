@@ -21,7 +21,7 @@ export type StateAction =
   | { type: 'LIST_GET', payload: any}
   | { type: 'LIST_CLEAR'}
   | { type: 'ITEM_GET', payload: any }
-  | { type: 'FIELD_UPDATE', payload: any }
+  | { type: 'FIELD_UPDATE', payload: { field: {name: string, value: string}} }
   | { type: 'ITEM_DELETE', payload: any }
   | { type: 'ITEM_CLOSE'}
 
@@ -50,7 +50,7 @@ export const baseReducer = (state = initialState, action: StateAction) => {
         ...state,
         item: {
           ...state.item,
-          [action.payload.name]: action.payload.value
+          [action.payload.field.name]: action.payload.field.value
         }
       };
     case 'ITEM_DELETE':
